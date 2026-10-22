@@ -1,0 +1,345 @@
+/* ==========================================================================
+   ESTRELLA ABSOLUTA: FRUTIGER AERO MAXIMALISTA (ECO-AQUA TECH / WEB 2.0)
+   ========================================================================== */
+
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 60px 0;
+  font-family: 'Segoe UI', 'Lucida Grande', Tahoma, sans-serif;
+  
+  /* Aurora Boreal e Hiper-Saturación de fondo */
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(163, 230, 53, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.7) 0%, transparent 60%),
+    linear-gradient(135deg, #0284c7 0%, #06b6d4 30%, #38bdf8 60%, #bbf7d0 100%);
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- ORBES Y BURBUJAS ORGÁNICAS FLOTANTES (3D AQUA EFFECT) --- */
+:host::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 20px 20px, rgba(255, 255, 255, 0.7) 12%, rgba(255, 255, 255, 0.1) 30%, rgba(56, 189, 248, 0.2) 60%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(circle at 40px 40px, rgba(255, 255, 255, 0.6) 8%, rgba(255, 255, 255, 0) 50%);
+  background-size: 260px 260px;
+  animation: aeroBubbles 25s linear infinite;
+  opacity: 0.65;
+}
+
+@keyframes aeroBubbles {
+  from { background-position: 0 0; transform: rotate(0deg); }
+  to { background-position: 260px -520px; transform: rotate(5deg); }
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 25px;
+  position: relative;
+  z-index: 10;
+}
+
+/* --- CABECERA GLOSSY (WINDOWS VISTA GLASS WIDGET) --- */
+.bg-dark {
+  /* Cristal tintado azul océano profundo con refracción interna */
+  background: linear-gradient(to bottom, 
+    rgba(10, 35, 75, 0.75) 0%, 
+    rgba(12, 74, 130, 0.85) 50%, 
+    rgba(3, 40, 80, 0.95) 100%);
+  color: #ffffff;
+  padding: 45px;
+  border-radius: 28px;
+  
+  /* Doble borde skeuomórfico (Luz incidente arriba, sombra abajo) */
+  border-top: 3px solid rgba(255, 255, 255, 0.65);
+  border-left: 2px solid rgba(255, 255, 255, 0.45);
+  border-right: 1px solid rgba(0, 0, 0, 0.25);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  
+  /* Sombra difusa de lente convexa */
+  box-shadow: 
+    0 25px 45px rgba(2, 44, 84, 0.4),
+    inset 0 20px 30px rgba(255, 255, 255, 0.2),
+    inset 0 -15px 25px rgba(0, 0, 0, 0.3);
+  
+  margin-bottom: 35px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(25px) saturate(150%);
+  -webkit-backdrop-filter: blur(25px) saturate(150%);
+}
+
+/* El icónico reflejo curvo elíptico superior de los botones e interfaces Web 2.0 */
+.bg-dark::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -10%; right: -10%; height: 48%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-radius: 0 0 50% 50% / 0 0 25% 25%;
+  pointer-events: none;
+}
+
+.bg-dark h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  text-shadow: 0 3px 10px rgba(0, 40, 90, 0.9), 0 0 20px rgba(56, 189, 248, 0.8);
+  letter-spacing: -0.01em;
+}
+
+.text-muted {
+  color: #e0f2fe;
+  margin: 0 0 35px 0;
+  font-size: 1.05rem;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* --- BOTONES CÁPSULA DE GELATINA (GLOSSY PLASTIC CAPSULES) --- */
+.btn-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn-outline-light {
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.35) 0%, 
+    rgba(255, 255, 255, 0.08) 48%, 
+    rgba(255, 255, 255, 0.02) 50%, 
+    rgba(255, 255, 255, 0.15) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 35, 70, 0.6);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-outline-light:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.5) 0%, 
+    rgba(56, 189, 248, 0.25) 48%, 
+    rgba(14, 165, 233, 0.15) 50%, 
+    rgba(255, 255, 255, 0.3) 100%);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.5);
+}
+
+/* El clásico Verde-Lima Frutiger hiper-brillante con reflejo cristal */
+.btn-outline-light.active {
+  background: linear-gradient(to bottom, 
+    #bef264 0%, 
+    #4ade80 48%, 
+    #22c55e 50%, 
+    #15803d 100%);
+  border-top: 1px solid #f0fdf4;
+  border-left: 1px solid #dcfce7;
+  border-right: 1px solid #14532d;
+  border-bottom: 2px solid #14532d;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(10, 50, 20, 0.8);
+  box-shadow: 
+    0 0 25px rgba(34, 197, 94, 0.7), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* --- PANELES AERO GLASS (TRANSPARENCIA VIDRIOSA CON SATURACIÓN) --- */
+.card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(30px) saturate(210%);
+  -webkit-backdrop-filter: blur(30px) saturate(210%);
+  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-left: 2px solid rgba(255, 255, 255, 0.6);
+  border-right: 1px solid rgba(200, 220, 240, 0.4);
+  border-bottom: 1px solid rgba(200, 220, 240, 0.4);
+  border-radius: 28px;
+  padding: 40px;
+  box-shadow: 
+    0 30px 60px rgba(2, 132, 199, 0.15),
+    inset 0 0 4px rgba(255, 255, 255, 0.9);
+}
+
+.text-primary {
+  color: #0369a1;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 24px;
+  border-bottom: 3px solid rgba(6, 182, 212, 0.4);
+  padding-bottom: 12px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+p {
+  line-height: 1.8;
+  color: #0f172a;
+  font-size: 1.02rem;
+}
+
+/* Orbes esféricos tridimensionales en listas */
+ul li {
+  margin-bottom: 14px;
+  color: #0f172a;
+  list-style-type: none;
+  position: relative;
+  padding-left: 28px;
+}
+ul li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 5px;
+  width: 14px; height: 14px;
+  /* Degradado tridimensional de esfera plástica brillante */
+  background: radial-gradient(circle at 4px 4px, #a3e635 0%, #22c55e 50%, #16a34a 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 3px 6px rgba(22, 163, 74, 0.45),
+    inset -1px -1px 3px rgba(0,0,0,0.2);
+}
+
+/* --- TABLAS ESTILO WIDGET VISTA --- */
+.table-responsive {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.table th {
+  /* Cabecera vidriada brillante verde/cian */
+  background: linear-gradient(to bottom, #ecfccb 0%, #ccfbf1 100%);
+  color: #0f766e;
+  padding: 18px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-bottom: 3px solid #99f6e4;
+}
+
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(6, 182, 212, 0.15);
+  color: #1e293b;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.text-danger { color: #e11d48; font-weight: 700; text-shadow: 0 0 8px rgba(225,29,72,0.15); }
+.text-success { color: #16a34a; font-weight: 700; text-shadow: 0 0 8px rgba(22,163,74,0.15); }
+
+/* --- CONTENEDORES INTERNOS E INYECTORES DE DATOS --- */
+.bg-light, .border-box {
+  background: linear-gradient(135deg, rgba(236, 252, 203, 0.65) 0%, rgba(224, 242, 254, 0.6) 100%);
+  border: 2px solid rgba(147, 197, 253, 0.5);
+  padding: 30px;
+  border-radius: 22px;
+  margin-bottom: 30px;
+  box-shadow: inset 0 1px 4px rgba(255,255,255,0.8);
+}
+
+.h6-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0369a1;
+  margin: 0 0 12px 0;
+}
+
+/* --- BOTONES AQUA GEL (THE REAL LIQUID AQUA BUTTON) --- */
+.btn-primary, .btn-dark {
+  background: linear-gradient(to bottom, 
+    #38bdf8 0%, 
+    #0ea5e9 46%, 
+    #0284c7 50%, 
+    #0369a1 100%);
+  border-top: 1px solid #f0fdf4;
+  border-left: 1px solid #bae6fd;
+  border-right: 1px solid #075985;
+  border-bottom: 2px solid #075985;
+  color: #ffffff;
+  padding: 14px 32px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  text-shadow: 0 1px 3px rgba(3, 105, 161, 0.7);
+  box-shadow: 
+    0 8px 20px rgba(2, 132, 199, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover, .btn-dark:hover {
+  filter: saturate(1.4) brightness(1.05);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.55);
+  transform: scale(1.01) translateY(-1px);
+}
+
+/* --- CONSOLAS DE TEXTO (SKEUOMÓRFICO AZUL ELÉCTRICO) --- */
+pre, textarea.font-monospace {
+  background: linear-gradient(180deg, #061830 0%, #0a274c 100%) !important;
+  color: #22d3ee !important;
+  border: 2px solid #0284c7;
+  border-radius: 18px;
+  box-shadow: 
+    inset 0 4px 12px rgba(0, 0, 0, 0.65),
+    0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+/* --- CAPAS DE ALERTA SÚPER GLOSSY --- */
+.alert {
+  padding: 22px;
+  border-radius: 18px;
+  margin-top: 25px;
+  font-weight: 600;
+  border-top: 2px solid rgba(255,255,255,0.4);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.05),
+    inset 0 12px 12px rgba(255, 255, 255, 0.25);
+}
+.alert-danger {
+  background: linear-gradient(to bottom, #fee2e2 0%, #fca5a5 46%, #f87171 50%, #ef4444 100%);
+  color: #4c0519;
+  border: 1px solid #ef4444;
+}
+.alert-warning {
+  background: linear-gradient(to bottom, #fef3c7 0%, #fcd34d 46%, #fbbf24 50%, #f59e0b 100%);
+  color: #451a03;
+  border: 1px solid #fbbf24;
+}
+.alert-success {
+  background: linear-gradient(to bottom, #dcfce7 0%, #86efac 46%, #4ade80 50%, #22c55e 100%);
+  color: #052e16;
+  border: 1px solid #22c55e;
+}
+
+/* --- SELECTORES CRISTALINOS --- */
+.form-control, .form-select {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #7dd3fc;
+  border-radius: 14px;
+  padding: 12px;
+  color: #0f172a;
+}

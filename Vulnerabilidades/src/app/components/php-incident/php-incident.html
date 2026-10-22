@@ -1,0 +1,125 @@
+<div class="container">
+  <!-- Ventana Cabecera Frutiger Aero -->
+  <div class="bg-dark">
+    <h1>💧 Incident Analyzer: PHP2Shell</h1>
+    <p class="text-muted">Análisis e investigación sobre las vulnerabilidades estructurales del núcleo de PHP descubiertas mediante Inteligencia Artificial en 2026. Impacto en Twinteach (Angular + Laravel).</p>
+    
+    <div class="btn-group">
+      <button class="btn-outline-light" [class.active]="currentTab === 'overview'" (click)="changeTab('overview')">🌐 1. Origen y Vulnerabilidad</button>
+      <button class="btn-outline-light" [class.active]="currentTab === 'versions'" (click)="changeTab('versions')">💿 2. Matriz e Impacto</button>
+      <button class="btn-outline-light" [class.active]="currentTab === 'twinteach'" (click)="changeTab('twinteach')">🛡️ 3. Auditoría Twinteach</button>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 1: EL INCIDENTE REAL -->
+  <div *ngIf="currentTab === 'overview'" class="card animate-fade">
+    <h4 class="text-primary">🌿 Origen y un Hito en la Seguridad (2026)</h4>
+    <p><strong>PHP2Shell</strong> es una familia de vulnerabilidades críticas de alta severidad (**CVSS 9.2**) localizadas directamente en el motor central de PHP. Fue descubierto y coordinado bajo una divulgación responsable en el año <strong>2026</strong> por los equipos de **Wiz Research** (Sagi Tzadik, Shir Tamari, Nir Ohfeld, Tomer Schwartz), **OpenAI Codex Security** (Amy Burnett) y **Calif** (Ryan A.).</p>
+    
+    <h4 class="text-primary mt-4">🤖 El Punto de Inflexión de la IA</h4>
+    <p>Este incidente representa un hito histórico: los investigadores utilizaron modelos de frontera como <strong>Gemini 4 Argon, GPT-5.6-Sol y Wiz Atlas</strong> para guiar el descubrimiento, construir las cadenas de explotación complejas y validar los parches de seguridad en el backend.</p>
+
+    <h4 class="text-primary mt-4">🔬 ¿En qué consiste la vulnerabilidad?</h4>
+    <p>PHP2Shell no depende de fallos en el código de tu aplicación (un "Hello World" limpio es igual de vulnerable). Comprende dos clases de fallos de seguridad en memoria:</p>
+    <ul>
+      <li><strong>CVE-2026-109618 (Corrupción por OOM):</strong> Mal manejo de escenarios fuera de memoria (Out-Of-Memory) que permite a atacantes no autenticados ejecutar código remoto (RCE) como si fueran el propio worker web de PHP.</li>
+      <li><strong>CVE-2026-109619 (Estado Global Caducado):</strong> Datos corruptos que sobreviven entre peticiones HTTP distintas, provocando un fallo de <em>Use-After-Free</em>. Esto permite leer la memoria interna del servidor.</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN 2: VERSIONES Y DAÑO -->
+  <div *ngIf="currentTab === 'versions'" class="card animate-fade">
+    <h4 class="text-primary">📊 Versiones Afectadas (Criterio Oficial)</h4>
+    <p>Dado que PHP alimenta aproximadamente el <strong>70% de los sitios web del planeta</strong>, la superficie de exposición es inmensa. Casi cualquier versión histórica desde PHP 5.4 es afectada, pero el rango moderno se divide así:</p>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr class="table-light">
+            <th>Rama PHP</th>
+            <th>Versiones en Peligro</th>
+            <th>Primer Parche Seguro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of versions">
+            <td><strong>{{ v.branch }}</strong></td>
+            <td class="text-danger font-monospace">{{ v.affected }}</td>
+            <td class="text-success font-monospace">{{ v.patched }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="text-primary mt-4">⚠️ Qué puede hacer un atacante en el Servidor</h4>
+    <ul>
+      <li><strong>Ejecución Remota de Código (RCE):</strong> Tomar control absoluto del servidor que aloja la base de datos sin necesidad de credenciales.</li>
+      <li><strong>Fuga de Memoria Agnóstica:</strong> Extraer de forma silenciosa secretos de otros usuarios de la memoria de PHP, como contraseñas, tokens de autenticación, llaves de API o certificados SSL.</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN 3: COMPROBACIONES EN TWINTEACH -->
+  <div *ngIf="currentTab === 'twinteach'" class="card animate-fade">
+    <h4 class="text-primary">🛡️ Pasos de Protección para el Ecosistema Twinteach</h4>
+    <p class="small-text">En Twinteach, tu frontend de Angular permanece inherentemente aislado en el cliente. Sin embargo, <strong>Laravel corre sobre PHP en el servidor</strong>. Si tu backend ejecuta procesos PHP-FPM vulnerables, toda la plataforma está en riesgo.</p>
+
+    <!-- SIMULADOR INTERACTIVO -->
+    <div class="bg-light">
+      <h6 class="simulator-title">⚙️ Test de Seguridad de Runtimes de PHP (2026)</h6>
+      <div class="g-3">
+        <div class="col-sm-4">
+          <label class="form-label">Versión de PHP en producción:</label>
+          <input type="text" class="form-control" [(ngModel)]="phpVersionInput" placeholder="Ej: 8.3.31 o 8.4.2">
+        </div>
+        <div class="col-sm-4">
+          <label class="form-label">Entorno del Proceso:</label>
+          <select class="form-select" [(ngModel)]="isPhpFpm">
+            <option [ngValue]="true">PHP-FPM / Servidor Linux Nginx</option>
+            <option [ngValue]="false">CLI / Trabajadores Asíncronos</option>
+          </select>
+        </div>
+      </div>
+      
+      <button class="btn-dark mt-4" (click)="checkSystemProtection()">Ejecutar Diagnóstico de Infraestructura</button>
+
+      <div *ngIf="diagnosticResult" class="alert" [ngClass]="diagnosticClass">
+        {{ diagnosticResult }}
+      </div>
+    </div>
+
+    <h4 class="text-primary mt-4">💎 ¿Cómo solucionar y mitigar el problema?</h4>
+    <ol>
+      <li><strong>La única solución real:</strong> Actualizar el intérprete de PHP a la versión segura (ej. 8.3.36+) y <strong>reiniciar obligatoriamente los servicios</strong> (Nginx, Apache, PHP-FPM) para limpiar la memoria remanente.</li>
+      <li><strong>Mitigaciones de emergencia (Si no puedes actualizar):</strong> Desactivar el despliegue de errores en producción (<code>display_errors = 0</code>), reducir el reciclado de trabajadores (<code>pm.max_requests</code> bajo) y restringir el tamaño de peticiones entrantes (<code>post_max_size</code>).</li>
+    </ol>
+
+    <!-- EXTRACCIÓN FORENSE DE INFORMACIÓN -->
+    <div class="border-box">
+      <h6 class="simulator-title">🔍 Evidencias de Explotación (Análisis de Intrusiones)</h6>
+      <p class="small-text">Debido a que el exploit corre por debajo de la capa de Laravel, no dejará rastro en tus logs normales de la app. Deben inspeccionarse comportamientos anómalos de red:</p>
+      
+      <div style="margin-bottom: 12px;">
+        <button class="btn-outline-secondary" (click)="loadLogExamples()">Cargar Logs con Firmas PHP2Shell</button>
+      </div>
+
+      <textarea class="form-control font-monospace mb-3" rows="4" [(ngModel)]="rawLogsInput" placeholder="Pega líneas del log de Apache/Nginx para escanear..."></textarea>
+      <button class="btn-primary" (click)="analyzeLogsLocal()">Escanear Memoria de Logs</button>
+
+      <!-- Resultados -->
+      <div *ngIf="analysisExecuted" class="mt-4">
+        <h6 class="fw-bold" style="font-size: 0.95rem; color: #0369a1;">Resultados del Analizador:</h6>
+        <div class="list-group">
+          <div *ngFor="let res of logAnalysisResults" class="list-group-item">
+            <div class="log-header">
+              <span class="badge" [ngClass]="{'bg-danger': res.status === 'PELIGRO', 'bg-warning': res.status === 'SOSPECHOSO', 'bg-success': res.status === 'SEGURO'}">
+                {{ res.status }}
+              </span>
+              <span class="log-line-text">{{ res.line }}</span>
+            </div>
+            <p class="log-detail">{{ res.detail }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
